@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #17253d;
+  background: #eef3f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #eef3f8;
+  color: #17253d;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-[1280px] px-4 md:px-6 lg:px-8;
+}
+
+.glass-panel {
+  @apply rounded-hero border border-white/50 bg-white/95 shadow-soft backdrop-blur;
+}
+
+.card-panel {
+  @apply rounded-[24px] border border-slate-200/70 bg-white shadow-card;
+}
+
+.pill-button {
+  @apply inline-flex items-center justify-center rounded-pill bg-brand-pill px-7 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-lg transition hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.hero-overlay {
+  background-image: var(--hero-image), linear-gradient(180deg, rgba(5, 16, 34, 0.88), rgba(5, 16, 34, 0.55), #eef3f8);
+  background-size: cover;
+  background-position: center;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
