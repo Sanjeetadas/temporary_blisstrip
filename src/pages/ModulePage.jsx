@@ -19,8 +19,9 @@ import { getDestinationCollections, getOffers } from '../services/api/offersApi'
 import { getModuleConfig } from '../utils/moduleConfigs';
 import { useParams } from 'react-router-dom';
 
-export default function ModulePage() {
-  const { moduleSlug = 'flights' } = useParams();
+export default function ModulePage({ moduleSlug: propSlug }) {
+  const params = useParams();
+  const moduleSlug = propSlug || params.moduleSlug || 'flights';
   const config = getModuleConfig(moduleSlug);
 
   const offersState = useAsyncData(() => getOffers(moduleSlug), [moduleSlug], { initialData: [] });

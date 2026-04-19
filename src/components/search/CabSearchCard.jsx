@@ -50,8 +50,8 @@ export default function CabSearchCard({ config }) {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="relative">
+      <div className="flex flex-col md:flex-row items-stretch border border-slate-200 rounded-[10px] divide-y md:divide-y-0 md:divide-x divide-slate-200">
+        <div className="flex-[1.2] relative">
           <SearchAutocompleteField
             label="From"
             name="pickup"
@@ -62,7 +62,7 @@ export default function CabSearchCard({ config }) {
         </div>
         
         {tripType !== 'hourly' ? (
-          <div className="relative">
+          <div className="flex-[1.2] relative">
             <SearchAutocompleteField
               label="To"
               name="drop"
@@ -72,10 +72,15 @@ export default function CabSearchCard({ config }) {
             />
           </div>
         ) : (
-          <div className="relative flex flex-col">
-            <label className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Package</label>
+          <div className="flex-[1.2] relative flex flex-col justify-center px-4 py-3 hover:bg-blue-50/50 transition-colors cursor-pointer rounded-lg group">
+            <label className="mb-1 text-sm font-semibold text-slate-500 flex items-center gap-1 cursor-pointer">
+              Package <span className="text-blue-500">∨</span>
+            </label>
+            <div className="w-full text-3xl font-black text-ink truncate">
+              {formValues.drop || 'Select Package'}
+            </div>
             <select 
-              className="h-14 w-full rounded-[16px] border border-slate-200 bg-slate-50 px-4 font-semibold text-ink outline-none"
+              className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
               value={formValues.drop}
               onChange={e => handleChange('drop', e.target.value)}
             >
@@ -87,20 +92,46 @@ export default function CabSearchCard({ config }) {
           </div>
         )}
 
-        <div className="relative flex flex-col">
-          <label className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Pickup Date</label>
+        <div className="flex-[0.8] relative flex flex-col justify-center px-4 py-3 hover:bg-blue-50/50 transition-colors cursor-pointer rounded-lg group">
+          <label className="mb-1 text-sm font-semibold text-slate-500 flex items-center gap-1 cursor-pointer">
+            Departure <span className="text-blue-500">∨</span>
+          </label>
+          <div className={`w-full truncate ${formValues.pickupDate ? 'text-3xl font-black text-ink' : 'text-xl font-bold text-slate-400'}`}>
+             {formValues.pickupDate ? new Date(formValues.pickupDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }).replace(/ /g, " '") : 'Select Date'}
+          </div>
           <input 
             type="date" 
-            className="h-14 w-full rounded-[16px] border border-slate-200 bg-slate-50 px-4 font-semibold text-ink outline-none"
+            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
             value={formValues.pickupDate}
+            min={new Date().toISOString().split('T')[0]}
+            onClick={(e) => { try { e.target.showPicker(); } catch(err) {} }}
             onChange={e => handleChange('pickupDate', e.target.value)}
           />
+          {formValues.pickupDate && (
+            <div className="text-xs text-slate-400 mt-1 truncate">
+              {new Date(formValues.pickupDate).toLocaleDateString('en-US', { weekday: 'long' })}
+            </div>
+          )}
         </div>
 
-        <div className="relative flex flex-col">
-          <label className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Pickup Time</label>
+        <div className="flex-[0.8] relative flex flex-col justify-center px-4 py-3 hover:bg-blue-50/50 transition-colors cursor-pointer rounded-lg group">
+          <label className="mb-1 text-sm font-semibold text-slate-500 flex items-center gap-1 cursor-pointer">
+            Return <span className="text-blue-500">∨</span>
+          </label>
+          <div className="w-full text-sm font-bold text-slate-400 mt-1">
+            Tap to add a return date for bigger discounts
+          </div>
+        </div>
+
+        <div className="flex-[0.8] relative flex flex-col justify-center px-4 py-3 hover:bg-blue-50/50 transition-colors cursor-pointer rounded-lg group">
+          <label className="mb-1 text-sm font-semibold text-slate-500 flex items-center gap-1 cursor-pointer">
+            Pickup-Time <span className="text-blue-500">∨</span>
+          </label>
+          <div className="w-full text-3xl font-black text-ink truncate">
+            {formValues.pickupTime}
+          </div>
           <select 
-            className="h-14 w-full rounded-[16px] border border-slate-200 bg-slate-50 px-4 font-semibold text-ink outline-none"
+            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
             value={formValues.pickupTime}
             onChange={e => handleChange('pickupTime', e.target.value)}
           >
@@ -112,7 +143,7 @@ export default function CabSearchCard({ config }) {
       </div>
 
       <div className="mt-8 flex justify-center absolute -bottom-6 left-1/2 -translate-x-1/2">
-        <Button type="submit" className="min-w-[220px] text-xl shadow-xl py-4 px-10 rounded-full font-extrabold bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+        <Button type="submit" className="min-w-[220px] text-xl shadow-xl py-4 px-10 rounded-full font-extrabold bg-[#008cff] text-white">
           SEARCH
         </Button>
       </div>

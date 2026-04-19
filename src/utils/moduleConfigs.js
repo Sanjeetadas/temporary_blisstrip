@@ -9,6 +9,7 @@ import {
   Shield,
   ShipWheel,
   TrainFront,
+  Umbrella,
   WalletCards,
 } from 'lucide-react';
 
@@ -16,6 +17,7 @@ export const moduleOrder = [
   'flights',
   'hotels',
   'homestays',
+  'packages',
   'trains',
   'buses',
   'cabs',
@@ -166,6 +168,34 @@ export const moduleConfigs = {
         body: 'Homestays and villas typically require marketplace-specific APIs. This project documents where to plug one in, while still shipping a strong frontend through shared stay cards and mocked responses.',
       },
     ],
+  },
+  packages: {
+    slug: 'packages',
+    title: 'Holiday Packages',
+    eyebrow: 'Curated holiday packages and tours',
+    accent: 'Holiday packages with flights, hotels and activities.',
+    icon: Umbrella,
+    heroImage:
+      'url("https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80")',
+    notice: 'Discover amazing holiday deals.',
+    promoTitle: 'Exclusive Holiday Packages',
+    promoCopy: 'Find the best deals for your next vacation.',
+    searchFields: [
+      { name: 'fromCity', label: 'From City', type: 'location', placeholder: 'New Delhi' },
+      { name: 'toCity', label: 'To City/Country', type: 'location', placeholder: 'Goa' },
+      { name: 'travelDate', label: 'Travel Date', type: 'date' },
+      { name: 'roomsAndGuests', label: 'Rooms & Guests', type: 'select', options: ['1 Room, 2 Adults', '1 Room, 1 Adult', '2 Rooms, 4 Adults'] },
+    ],
+    defaultValues: {
+      fromCity: 'New Delhi',
+      toCity: 'Goa',
+      travelDate: '',
+      roomsAndGuests: '1 Room, 2 Adults',
+    },
+    discoverTitle: 'Popular Destinations',
+    discoverType: 'packages',
+    faqItems: baseFaqs,
+    seoSections: [],
   },
   trains: {
     slug: 'trains',

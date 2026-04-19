@@ -35,11 +35,12 @@ export default function SearchAutocompleteField({ label, name, value, placeholde
   }, [debouncedValue]);
 
   return (
-    <div className="relative min-w-0">
-      <label className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-slate-400">{label}</label>
-      <div className="rounded-[18px] border border-slate-200 bg-slate-50 px-4 py-3">
-        <div className="flex items-center gap-2 text-slate-500">
-          <Search size={16} />
+    <div className="relative min-w-0 h-full w-full">
+      <div className="flex flex-col justify-center px-4 py-3 h-full cursor-text hover:bg-blue-50/50 transition-colors rounded-lg">
+        <label className="mb-1 block text-sm font-semibold text-slate-500 cursor-pointer flex items-center gap-1">
+          {label} <span className="text-blue-500">∨</span>
+        </label>
+        <div className="flex items-center text-slate-500">
           <input
             name={name}
             value={inputValue}
@@ -52,8 +53,18 @@ export default function SearchAutocompleteField({ label, name, value, placeholde
             }}
             onFocus={() => setIsOpen(true)}
             onBlur={() => setTimeout(() => setIsOpen(false), 150)}
-            className="w-full bg-transparent text-base font-semibold text-ink outline-none"
+            className="w-full bg-transparent text-3xl font-black text-ink outline-none truncate"
           />
+        </div>
+        <div className="text-xs text-slate-400 mt-1 truncate">
+          {value === 'New Delhi' ? 'NDLS, New Delhi Railway Station' :
+           value === 'Kanpur' ? 'CNB, Kanpur Central' :
+           value === 'Goa, India' ? 'India' :
+           value === 'Delhi, Delhi' ? 'India' :
+           value === 'Kanpur, Uttar Pradesh' ? 'India' :
+           value === 'Mumbai' ? 'Maharashtra' :
+           value === 'Pune' ? 'Maharashtra' :
+           placeholder}
         </div>
       </div>
       {isOpen && suggestions.length > 0 ? (

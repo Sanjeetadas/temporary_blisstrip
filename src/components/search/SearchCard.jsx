@@ -70,7 +70,7 @@ export default function SearchCard({ config }) {
       </div>
 
       <div className="mt-8 flex justify-center absolute -bottom-6 left-1/2 -translate-x-1/2">
-        <Button type="submit" disabled={isInvalid(config, formValues)} className="min-w-[220px] text-xl shadow-xl py-4 px-10 rounded-full font-extrabold bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+        <Button type="submit" disabled={isInvalid(config, formValues)} className="min-w-[220px] text-xl shadow-xl py-4 px-10 rounded-full font-extrabold bg-[#008cff] text-white">
           SEARCH
         </Button>
       </div>

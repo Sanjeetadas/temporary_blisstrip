@@ -16,7 +16,7 @@ function App() {
         <Route path="/hotels" element={<HotelsPage />} />
         <Route path="/hotels/results" element={<HotelResultsPage />} />
         {moduleOrder.map((slug) => (
-          <Route key={slug} path={`/${slug}`} element={<ModulePage />} />
+          <Route key={slug} path={`/${slug}`} element={<ModulePage moduleSlug={slug} />} />
         ))}
         <Route path="/about" element={<StaticPage title="About Us" content={<p>BLISSTRIP is a leading travel platform connecting you with the best experiences worldwide.</p>} />} />
         <Route path="/contact" element={<StaticPage title="Contact Us" content={<p>Email us at support@blisstrip.com or call our 24/7 helpline.</p>} />} />
